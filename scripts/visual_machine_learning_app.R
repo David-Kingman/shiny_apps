@@ -1,9 +1,7 @@
-# Check code for presentation, redundancy and comments
-
-# Work out how to size objects to look their best on larger screens
-# Test and debug app - check for how different sequences of actions get treated
-# Sort out app file structure and/or move to its own repo
-# Look at making the app public on github and hosting it on shinyapps.io
+## Todos:
+# - Check code for presentation, redundancy and comments
+# - Work out how to size objects to look their best on larger screens
+# - Look at making app public on shinyapps.io
 
 ## Set-up
 library(nycflights13)
