@@ -33,9 +33,9 @@ temp_and_dewpoint <-
 
 # Simulated non-linear data (sin function)
 sin_data <- 
-  tibble(X = runif(n = 3000, min = 0, max = 13),
-         rand = rnorm(n = 3000, sd = 0.25),
-         Y = (sin(X) + rand) - (X * 0.25))  %>% 
+  tibble(X = runif(n = 5000, min = -20, max = 20),
+         rand = rnorm(n = 5000, sd = 0.025),
+         Y = (sin(X) / X) + rand) %>% 
   mutate(across(everything(), ~ .x * 10)) %>% 
   select(Y, X)
 
@@ -52,6 +52,14 @@ price_and_carat <-
   select(price, carat) %>% 
   sample_n(size = 3000, replace = TRUE)
 
+# ISLR2::Boston - Median house price vs Number of rooms
+house_prices_and_rooms <-
+  ISLR2::Boston %>% 
+  as_tibble() %>% 
+  select(median_house_price = medv,
+         number_of_rooms = rm) %>% 
+  mutate(median_house_price = median_house_price * 1000)
+
 # ISLR2::Wage - Log wage vs Age
 age_and_log_wage <- 
   Wage %>% 
@@ -63,6 +71,7 @@ datasets <- c('Dew point vs temperature' = 'temp_and_dewpoint',
               'Sin function' = 'sin_data',
               'Life expectancy vs GDP' = 'gdp_and_life_expectancy',
               'Price vs carats' = 'price_and_carat',
+              'House price vs No. of rooms' = 'house_prices_and_rooms',
               'Log wage vs age' = 'age_and_log_wage')
 
 ## 2. Create UI
